@@ -15,7 +15,7 @@ function codepenInjector (content, externalJS) {
 
   var JSONstring = JSON.stringify(data).replace(/"/g, '&quot;');
 
-  var formStyle = 'display:inline-block;position:absolute;top:0;right:5px;'
+  var formStyle = 'display:inline-block;position:absolute;top:0;left:0;'
   var form =
     '<form action="http://codepen.io/pen/define" method="POST" target="_blank" style="' + formStyle + '">' +
       '<input type="hidden" name="data" value="' + JSONstring + '">' +
