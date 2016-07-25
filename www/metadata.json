@@ -1,0 +1,7 @@
+{
+  "title": "Plotly.js Demos",
+  "appName": "plotly-demos",
+  "camelizedAppName": "plotlyDemos",
+  "description": "One-off demos while working on plotly.js",
+  "ghOrgOrUser": "rreusser"
+}
