@@ -1,10 +1,10 @@
-function plot () {
+function plot (data) {
     Plotly.plot('graph', data.data, data.layout, data.config).then(function() {
         Plotly.addFrames('graph', data.frames);
     });
 }
 
-var data = {
+plot({
   "data":[
     {
       "name":"Asia",
@@ -8536,6 +8536,4 @@ var data = {
   "config":{
     "scrollzoom":true
   }
-}
-
-plot();
+});
