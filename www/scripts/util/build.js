@@ -5,6 +5,8 @@ var resolve = require('./content-resolver');
 var toStr = require('stream-to-string');
 var str = require('string-to-stream');
 var codepenInjector = require('./codepen-injector');
+var metaTagInjector = require('./meta-tag-injector');
+var metadata = require('../../metadata');
 
 module.exports = build;
 
@@ -54,6 +56,8 @@ function build (htmlpath, opts, cb) {
         if (opts.codepen) {
           out = out.pipe(codepenInjector(content, opts.externalJS))
         }
+
+        out = out.pipe(metaTagInjector(metadata.metaTags));
 
         cb(null, out, meta);
       }

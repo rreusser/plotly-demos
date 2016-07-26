@@ -3,9 +3,11 @@
 var budo = require('budo');
 var wrapHtml = require('./util/wrap-html');
 var url = require('url');
+var metaTags = require('./util/meta-tag-injector');
 var lr = require('inject-lr-script-stream');
 var resolve = require('./util/content-resolver');
 var toStr = require('stream-to-string');
+var metadata = require('../metadata');
 
 var app = budo('www/src/static.js', {
   watchGlob: 'www/src/**/*.{html,css,js}',
@@ -37,6 +39,7 @@ var app = budo('www/src/static.js', {
           css: data.cssrel
         })
           .pipe(lr())
+          .pipe(metaTags(metadata.metaTags))
           .pipe(res);
       });
       } catch(e) {

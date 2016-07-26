@@ -15,6 +15,7 @@ var config = xtend(awsConfig({
   appName: meta.appName,
   isSnapshot: !!argv.snapshot,
   bucket: awsCreds.bucket,
+  webHost: awsCreds.webHost,
 }), {
   pattern: argv.pattern || 'www/src/*.html',
   destpath: argv.dest || 'www/dist',
@@ -28,6 +29,8 @@ buildDist(config, function (err) {
     return console.error(err);
   }
 
+  process.stdout.write('Writing files to S3...');
+
   var client = s3.createClient({s3Options: awsCreds});
 
   var uploader = client.uploadDir({
@@ -40,7 +43,19 @@ buildDist(config, function (err) {
     }
   });
 
+
+  uploader.on('progress', function () {
+    if (uploader.progressTotal > 0) {
+      process.stdout.write('\rWriting files to S3 ' + (uploader.progressAmount / uploader.progressTotal * 100).toFixed(0) + '% complete');
+    }
+  });
+
+  uploader.on('error', function (err) {
+    console.log('Uploader:', err);
+  })
+
   uploader.on('end', function () {
+    console.log('Complete.');
     openurl.open(config.baseUrl);
 
     ncp.copy(config.baseUrl, function () {

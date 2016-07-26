@@ -3,5 +3,19 @@
   "appName": "plotly-demos",
   "camelizedAppName": "plotlyDemos",
   "description": "One-off demos while working on plotly.js",
-  "ghOrgOrUser": "rreusser"
+  "ghOrgOrUser": "rreusser",
+  "metaTags": {
+    "site": "Ricky Reusser",
+    "title": "Plotly.js Demos",
+    "description": "One-off demos while workin on plotly.js",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Plotly.js Demos",
+    "twitter:site": "@rickyreusser",
+    "twitter:description": "One-off demos while working on plotly.js",
+    "twitter:image": "images/screenshot.png",
+    "og:image": "images/screenshot.png",
+    "og:site_name": "Ricky Reusser",
+    "og:title": "Plotly.js Demos",
+    "og:description": "One-off demos while working on plotly.js"
+  }
 }
